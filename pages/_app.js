@@ -7,8 +7,8 @@ export default function _app({Component, pageProps: { session, ...pageProps }}) 
   return (
     <>
       <Head>
-        <title>Next App</title>
-        <meta name="description" content="Next App" />
+        <title>Worki - Schedule and manage work shifts</title>
+        <meta name="description" content="Schedule and manage work shifts" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
