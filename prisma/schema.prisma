@@ -6,6 +6,11 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:database.db"
+  provider = "mongodb"
+  url      = env("PRISMA_MONGODB_AUTH_URL")
+}
+
+model shifts {
+  id Int @id @map("_id")
+  timestamp Int
 }

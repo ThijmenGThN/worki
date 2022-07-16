@@ -13,7 +13,6 @@ export default function Control({active}) {
     setShift_timeSince(Date.now() - shift_timestamp)
 
     const intv = setInterval(() => {
-      console.log(shift_timestamp, Date.now(), shift_timestamp - Date.now())
       setShift_timeSince(Date.now() - shift_timestamp)
     }, 1000)
 
