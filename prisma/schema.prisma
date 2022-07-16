@@ -12,5 +12,6 @@ datasource db {
 
 model shifts {
   id Int @id @map("_id")
+  email String
   timestamp Int
 }
