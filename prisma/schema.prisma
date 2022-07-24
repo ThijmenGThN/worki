@@ -6,12 +6,12 @@ generator client {
 }
 
 datasource db {
-  provider = "mongodb"
-  url      = env("PRISMA_MONGODB_AUTH_URL")
+  provider = "mysql"
+  url      = env("PRISMA_DATABASE_URL")
 }
 
 model shifts {
-  id Int @id @map("_id")
+  id Int @id
   email String
-  timestamp Int
+  isActive Boolean @default(true)
 }

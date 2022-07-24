@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react'
 import { BsFillCalendarWeekFill, BsFillGrid1X2Fill, BsFillGearFill, BsPlusLg, BsFillPlayFill, BsFillStopFill } from 'react-icons/bs'
 
 export default function Control({active}) {
-
   const [shift_isActive, setShift_isActive] = useState(false)
   const [shift_timestamp, setShift_timestamp] = useState()
   const [shift_timeSince, setShift_timeSince] = useState()
@@ -12,10 +11,7 @@ export default function Control({active}) {
   useEffect(() => {
     setShift_timeSince(Date.now() - shift_timestamp)
 
-    const intv = setInterval(() => {
-      setShift_timeSince(Date.now() - shift_timestamp)
-    }, 1000)
-
+    const intv = setInterval(() => setShift_timeSince(Date.now() - shift_timestamp), 1000)
     return () => clearInterval(intv)
   }, [shift_timestamp])
 
@@ -31,7 +27,7 @@ export default function Control({active}) {
           ) : (
             <>
               <BsFillPlayFill className="text-2xl" />
-              start a shift
+              start new shift
             </>
           ) 
         }
