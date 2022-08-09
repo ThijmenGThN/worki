@@ -26,7 +26,7 @@ export default function Index() {
         }
       </ul>
 
-      <div className="p-4 absolute bottom-0 w-full flex justify-center gap-2">
+      <div className="p-4 mb-8 absolute bottom-0 w-full flex justify-center gap-2">
         <a className="text-yellow-500" rel="noreferrer" href="mailto:worki-support@thijmenheuvelink.nl">Support</a>
         ✦
         <a className="text-yellow-500" rel="noreferrer" href="https://github.com/ThijmenGThN/worki" target="_blank">GitHub</a>
