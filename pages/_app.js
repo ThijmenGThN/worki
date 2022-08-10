@@ -10,7 +10,7 @@ import Controls from '/source/components/interface/Controls'
 export default function _app({Component, pageProps: { session, ...pageProps }}) {
   const [inApp, setInApp] = useState(false)
 
-  useEffect(() => setInApp(window.location.pathname.includes('app')))
+  useEffect(() => setInApp(window.location.pathname.includes('app')), [])
 
   return (
     <>

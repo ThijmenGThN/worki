@@ -11,7 +11,7 @@ export default function Schedule() {
 
   return (
     <div className="m-2 flex flex-col mt-20 min-h-[100vh]">
-      // WIP - View your schedule.
+      WIP - View your schedule.
     </div>
   )
 }

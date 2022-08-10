@@ -11,7 +11,7 @@ export default function Settings() {
 
   return (
     <div className="m-2 flex flex-col mt-20 min-h-[100vh]">
-      // WIP - Edit app related settings.
+      WIP - Edit app related settings.
     </div>
   )
 }
