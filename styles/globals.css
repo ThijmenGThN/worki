@@ -3,3 +3,4 @@
 @tailwind utilities;
 
 body { @apply bg-neutral-100 }
+::-webkit-scrollbar { display: none }

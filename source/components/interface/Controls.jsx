@@ -16,8 +16,7 @@ export default function InterfaceControl() {
     API.user.shift.toggle(session?.user.email)
       .then(data => {
         setShift_isActive(data ? true : false)
-        if (!data) return location.reload()
-        setShift_start(new Date(data.start).getTime())
+        if (data) setShift_start(new Date(data.start).getTime())
       })
   }
 
@@ -25,8 +24,7 @@ export default function InterfaceControl() {
     API.user.shift.active(session?.user.email)
       .then(data => {
         setShift_isActive(data ? true : false)
-        if (!data) return
-        setShift_start(new Date(data.start).getTime())
+        if (data) setShift_start(new Date(data.start).getTime())
       })
   }, [])
 

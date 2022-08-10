@@ -10,5 +10,10 @@ export default {
       list: email => new Promise(async res => res(await emit('user/shift/list', {email}))),
       delete: id => new Promise(async res => res(await emit('user/shift/delete', {id}))),
     }
+  },
+  env: {
+    dev: {
+      debug: () => new Promise(async res => res(await emit('env/dev/debug')))
+    }
   }
 }
