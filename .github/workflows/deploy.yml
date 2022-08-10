@@ -1,0 +1,11 @@
+name: Deploy
+
+on:
+  push:
+    branches: [ server ]
+
+jobs:
+  Deploy:
+    runs-on: self-hosted
+    steps:
+      - run: docker restart worki
