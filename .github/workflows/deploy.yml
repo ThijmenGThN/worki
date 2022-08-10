@@ -8,5 +8,17 @@ jobs:
   Deploy:
     runs-on: self-hosted
     steps:
-      - uses: actions/checkout@v3
-      - run: npm run deploy
+      - name: Checkout Git
+        uses: actions/checkout@v3
+
+      - name: Install Deps
+        run: npm i
+        
+      - name: Validate Code Integrity
+        run: npm run lint
+
+      - name: Build
+        run: npm run build
+
+      - name: Launch
+        run: npm start
