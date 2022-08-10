@@ -11,6 +11,9 @@ jobs:
       - name: Checkout Git
         uses: actions/checkout@v3
 
+      - name: Prep
+        run: cd /root/runner/_work/worki/worki
+
       - name: Install
         run: npm i
         
