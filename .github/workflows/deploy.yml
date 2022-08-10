@@ -11,14 +11,14 @@ jobs:
       - name: Checkout Git
         uses: actions/checkout@v3
 
-      - name: Install Deps
+      - name: Install
         run: npm i
         
-      - name: Validate Code Integrity
+      - name: Lint
         run: npm run lint
 
       - name: Build
         run: npm run build
 
-      - name: Launch
+      - name: Start
         run: npm start
