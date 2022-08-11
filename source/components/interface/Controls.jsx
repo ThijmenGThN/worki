@@ -45,8 +45,8 @@ export default function InterfaceControl() {
   }, [active])
 
   return (
-    <div className="fixed w-full bottom-0 overflow-hidden">
-      <button onClick={() => shiftToggle()} className={"flex gap-2 mx-auto w-52 justify-center rounded-lg m-2 mt-5 p-3 pr-5 pt-3 text-white "  + (shift_isActive ? 'bg-red-400' : 'bg-neutral-400')}>
+    <div className="fixed w-full bottom-0 overflow-hidden pointer-events-none">
+      <button onClick={() => shiftToggle()} className={"flex pointer-events-auto gap-2 mx-auto w-52 justify-center rounded-lg m-2 mt-5 p-3 pr-5 pt-3 text-white "  + (shift_isActive ? 'bg-red-400' : 'bg-neutral-400')}>
         { 
           shift_isActive ? (
             <>
@@ -63,7 +63,7 @@ export default function InterfaceControl() {
         <p className={"absolute w-36 h-8 ml-2 -z-10 top-7 rounded-lg " + (shift_isActive ? 'bg-red-400 animate-ping' : 'bg-neutral-400')}></p>
       </button>
 
-      <div className="flex justify-center h-[100px] bg-white border rounded-t-lg">
+      <div className="flex justify-center h-[100px] bg-white border rounded-t-lg pointer-events-auto">
         <Link href="/app/overview">
           <button className={"hover:bg-zinc-300 pb-10 px-8 border-r " + (active == 'overview' ? 'bg-zinc-200' : null)}>
             <BsFillGrid1X2Fill />

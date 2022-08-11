@@ -10,8 +10,8 @@ export default function Insert() {
   useEffect(() => actions.user.session.validate(status), [status])
 
   return (
-    <div className="m-2 flex flex-col mt-20 min-h-[100vh]">
-      // WIP - Insert custom shifts.
+    <div className="m-2 flex flex-col mt-20 mb-44">
+      WIP - Insert custom shifts.
     </div>
   )
 }

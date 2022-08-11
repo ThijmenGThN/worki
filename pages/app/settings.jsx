@@ -10,8 +10,8 @@ export default function Settings() {
   useEffect(() => actions.user.session.validate(status), [status])
 
   return (
-    <div className="m-2 flex flex-col mt-20 min-h-[100vh]">
-      // WIP - Edit app related settings.
+    <div className="m-2 flex flex-col mt-20 mb-44">
+      WIP - Edit app related settings.
     </div>
   )
 }
