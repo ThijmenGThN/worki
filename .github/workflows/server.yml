@@ -5,16 +5,12 @@ on:
     branches: [ server ]
 
 jobs:
-  Fetch:
+  Deploy:
     runs-on: self-hosted
     steps:
       - name: Checkout Git
         uses: actions/checkout@v3
 
-  Validate:
-    runs-on: self-hosted
-    needs: [Fetch]
-    steps:
       - uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SSH_HOST }}
@@ -25,32 +21,6 @@ jobs:
           script: |
             npm install
             npm run lint
-
-  Build:
-    runs-on: self-hosted
-    needs: [Validate]
-    steps:
-      - uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          passphrase: ${{ secrets.SSH_PASS }}
-          key: ${{ secrets.SSH_RSA }}
-          port: ${{ secrets.SSH_PORT }}
-          script: |
             npm run build
             docker-compose build -d
-
-  Deploy:
-    runs-on: self-hosted
-    needs: [Build]
-    steps:
-      - uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          passphrase: ${{ secrets.SSH_PASS }}
-          key: ${{ secrets.SSH_RSA }}
-          port: ${{ secrets.SSH_PORT }}
-          script: |
             docker-compose up -d
