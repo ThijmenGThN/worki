@@ -1,0 +1,40 @@
+name: server
+
+on:
+  push:
+    branches: [ server ]
+
+jobs:
+  Pull:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout Git
+        uses: actions/checkout@v3
+
+  Prepare:
+    runs-on: self-hosted
+    needs: [Pull]
+    steps:
+      - name: Install
+        run: npm i
+
+  Validate:
+    runs-on: self-hosted
+    needs: [Prepare]
+    steps:
+      - name: Lint
+        run: npm run lint
+
+  Build:
+    runs-on: self-hosted
+    needs: [Validate]
+    steps:
+      - name: Build
+        run: npm run build
+
+  Start:
+    runs-on: self-hosted
+    needs: [Build]
+    steps:
+      - name: Build
+        run: npm run build
