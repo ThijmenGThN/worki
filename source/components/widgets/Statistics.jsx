@@ -1,10 +1,12 @@
 import Chart from '/source/components/Chart'
 
+import { AiOutlineInfoCircle } from 'react-icons/ai'
+
 export default function WidgetStatistics() {
   return (
     <>
       <p className="m-2 font-bold text-xl">Statistics</p>
-      <div className="border rounded-lg p-4 w-full bg-white">
+      <div className="border rounded-lg p-4 pb-2 w-full bg-white">
         <div className="bg-neutral-100 w-full h-20 rounded p-2 pb-7 text-center">
           <Chart
             labels={['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']} 
@@ -31,6 +33,9 @@ export default function WidgetStatistics() {
             <p>sun</p>
           </div>
         </div>
+        <p className="italic font-mono text-sm mt-2 text-neutral-400 flex">
+          <AiOutlineInfoCircle className="mt-[2px] mx-1" /> shift duration in hours
+        </p>
       </div>
     </>
   )
