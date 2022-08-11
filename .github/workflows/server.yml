@@ -47,7 +47,6 @@ jobs:
             export NVM_DIR=~/.nvm
             source ~/.nvm/nvm.sh
             npm run build
-            docker-compose build -d
 
   Deploy:
     runs-on: self-hosted
@@ -63,4 +62,5 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             cd ${{ secrets.WORKDIR }}
+            docker-compose build -d
             docker-compose up -d
