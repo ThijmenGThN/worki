@@ -5,13 +5,18 @@ on:
     branches: [ server ]
 
 jobs:
-  Deploy:
+  Fetch:
     runs-on: self-hosted
     steps:
       - name: Checkout Git
         uses: actions/checkout@v3
 
-      - uses: appleboy/ssh-action@master
+  Validate:
+    runs-on: self-hosted
+    needs: [Fetch]
+    steps:
+      - name: Validate
+        uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
@@ -19,8 +24,39 @@ jobs:
           key: ${{ secrets.SSH_RSA }}
           port: ${{ secrets.SSH_PORT }}
           script: |
+            cd ${{ secrets.WORKDIR }}
             npm install
             npm run lint
+
+  Build:
+    runs-on: self-hosted
+    needs: [Validate]
+    steps:
+      - name: Build
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          passphrase: ${{ secrets.SSH_PASS }}
+          key: ${{ secrets.SSH_RSA }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            cd ${{ secrets.WORKDIR }}
             npm run build
             docker-compose build -d
+
+  Deploy:
+    runs-on: self-hosted
+    needs: [Build]
+    steps:
+      - name: Deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          passphrase: ${{ secrets.SSH_PASS }}
+          key: ${{ secrets.SSH_RSA }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            cd ${{ secrets.WORKDIR }}
             docker-compose up -d
