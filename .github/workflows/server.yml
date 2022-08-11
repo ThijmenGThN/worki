@@ -19,7 +19,8 @@ jobs:
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
-          password: ${{ secrets.SSH_PASS }}
+          passphrase: ${{ secrets.SSH_PASS }}
+          key: ${{ secrets.SSH_RSA }}
           port: ${{ secrets.SSH_PORT }}
           script: |
             npm install
@@ -33,7 +34,8 @@ jobs:
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
-          password: ${{ secrets.SSH_PASS }}
+          passphrase: ${{ secrets.SSH_PASS }}
+          key: ${{ secrets.SSH_RSA }}
           port: ${{ secrets.SSH_PORT }}
           script: |
             npm run build
@@ -47,7 +49,8 @@ jobs:
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
-          password: ${{ secrets.SSH_PASS }}
+          passphrase: ${{ secrets.SSH_PASS }}
+          key: ${{ secrets.SSH_RSA }}
           port: ${{ secrets.SSH_PORT }}
           script: |
             docker-compose up -d
