@@ -15,26 +15,22 @@ jobs:
     runs-on: self-hosted
     needs: [Pull]
     steps:
-      - name: Install
-        run: npm i
+      - run: npm install
 
   Validate:
     runs-on: self-hosted
     needs: [Prepare]
     steps:
-      - name: Lint
-        run: npm run lint
+      - run: npm run lint
 
   Build:
     runs-on: self-hosted
     needs: [Validate]
     steps:
-      - name: Build
-        run: npm run build
+      - run: npm run build
 
   Start:
     runs-on: self-hosted
     needs: [Build]
     steps:
-      - name: Build
-        run: npm run build
+      - run: npm start
