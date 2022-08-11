@@ -11,28 +11,6 @@ jobs:
       - name: Checkout Git
         uses: actions/checkout@v3
 
-  Prepare:
-    runs-on: self-hosted
-    steps:
-      - name: Install NVM
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          passphrase: ${{ secrets.SSH_PASS }}
-          key: ${{ secrets.SSH_RSA }}
-          port: ${{ secrets.SSH_PORT }}
-          script: wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-      - name: Install NodeJS
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          passphrase: ${{ secrets.SSH_PASS }}
-          key: ${{ secrets.SSH_RSA }}
-          port: ${{ secrets.SSH_PORT }}
-          script: nvm install 18 ; nvm use 18
-
   Validate:
     runs-on: self-hosted
     needs: [Fetch, Prepare]
@@ -47,6 +25,8 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             cd ${{ secrets.WORKDIR }}
+            export NVM_DIR=~/.nvm
+            source ~/.nvm/nvm.sh
             npm install
             npm run lint
 
@@ -64,6 +44,8 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             cd ${{ secrets.WORKDIR }}
+            export NVM_DIR=~/.nvm
+            source ~/.nvm/nvm.sh
             npm run build
             docker-compose build -d
 
