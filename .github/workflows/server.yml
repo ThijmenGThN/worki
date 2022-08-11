@@ -13,7 +13,7 @@ jobs:
 
   Validate:
     runs-on: self-hosted
-    needs: [Fetch, Prepare]
+    needs: [Fetch]
     steps:
       - name: Validate
         uses: appleboy/ssh-action@master
