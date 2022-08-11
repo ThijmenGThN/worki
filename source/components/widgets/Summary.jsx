@@ -3,7 +3,10 @@ import { useSession } from "next-auth/react"
 
 import { BiArchive } from 'react-icons/bi'
 import { FaTrash } from 'react-icons/fa'
+import { MdWork } from 'react-icons/md'
 import API from '/source/api'
+
+const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
 export default function WidgetSummary() {
   const { data: session, status } = useSession()
@@ -34,13 +37,27 @@ export default function WidgetSummary() {
             <ul className="grid grid-cols-2 gap-4 p-4">
               {
                 list.map((shift, index) => (
-                  <li key={index} className="bg-neutral-100 pt-0 flex rounded">
-                    <div className="ml-2 grow grid grid-rows-2">
-                      <p>{`${new Date(shift.start).getDay()}/${new Date(shift.start).getMonth()}/${(new Date(shift.start).getFullYear() + '').slice(2)}`}</p>
+                  <li key={index} className="bg-neutral-100 flex flex-col rounded p-4">
+                    <div className="flex gap-2">
+                      <MdWork className="h-full text-2xl" />
+                      <p>
+                        {
+                          `${
+                            new Date(shift.start).getDay()
+                          } ${
+                            months[new Date(shift.start).getMonth()]
+                          } ${
+                            new Date(shift.start).getFullYear()
+                          }`
+                        }
+                      </p>
+                    </div>
+
+                    <div>
                       <p>{new Date(new Date(shift.end).getTime() - new Date(shift.start).getTime()).toISOString().slice(11, 19)}</p>
                     </div>
 
-                    <button className="bg-red-400 hover:bg-red-500 rounded-r px-4 text-white"
+                    <button className="bg-red-400 hover:bg-red-500 text-white p-4 rounded-lg ml-auto"
                       onClick={async () => {
                         await API.user.shift.delete(shift.id)
                         fetchList()

@@ -10,7 +10,7 @@ export default function Schedule() {
   useEffect(() => actions.user.session.validate(status), [status])
 
   return (
-    <div className="m-2 flex flex-col mt-20 min-h-[100vh]">
+    <div className="m-2 flex flex-col mt-20 mb-44">
       WIP - View your schedule.
     </div>
   )
