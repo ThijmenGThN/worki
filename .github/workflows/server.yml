@@ -15,23 +15,39 @@ jobs:
     runs-on: self-hosted
     needs: [Fetch]
     steps:
-      - name: Install
-        run: npm install
-      - name: Lint
-        run: npm run lint
+      uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          password: ${{ secrets.SSH_PASS }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            npm install
+            npm run lint
 
   Build:
     runs-on: self-hosted
     needs: [Validate]
-    steps: 
-      - name: Build (NextJS)
-        run: npm run build
-      - name: Build (Docker)
-        run: docker-compose build
+    steps:
+      uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          password: ${{ secrets.SSH_PASS }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            npm run build
+            docker-compose build -d
 
   Deploy:
     runs-on: self-hosted
     needs: [Build]
     steps:
-      - name: Deploy
-        run: docker-compose up -d
+      uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          password: ${{ secrets.SSH_PASS }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            docker-compose up -d
