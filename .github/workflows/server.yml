@@ -16,22 +16,22 @@ jobs:
     needs: [Fetch]
     steps:
       - name: Install
-        shell: npm install
+        run: npm install
       - name: Lint
-        shell: npm run lint
+        run: npm run lint
 
   Build:
     runs-on: self-hosted
     needs: [Validate]
     steps: 
       - name: Build (NextJS)
-        shell: npm run build
+        run: npm run build
       - name: Build (Docker)
-        shell: docker-compose build
+        run: docker-compose build
 
   Deploy:
     runs-on: self-hosted
     needs: [Build]
     steps:
       - name: Deploy
-        shell: docker-compose up -d
+        run: docker-compose up -d
