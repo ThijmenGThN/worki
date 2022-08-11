@@ -15,10 +15,11 @@ jobs:
     runs-on: self-hosted
     needs: [Pull]
     steps:
-      - run: |
-          nvm install 18
-          nvm use 18
-          npm install
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: 'npm'
+      - run: npm install
 
   Validate:
     runs-on: self-hosted
